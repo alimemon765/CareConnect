@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F8F9FA;
+  color: #1A1A2E;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+@media (min-width: 430px) {
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #E5E7EB;
+    z-index: -1;
+  }
+}
+
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+.leaflet-container { border-radius: 20px; }
+
+@keyframes sos-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,71,87,0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255,71,87,0); }
+}
+
+.sos-pulse {
+  animation: sos-pulse 1.4s ease-in-out infinite;
+}
+
+input, select, textarea {
+  outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+}
