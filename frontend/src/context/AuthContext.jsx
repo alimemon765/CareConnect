@@ -11,7 +11,9 @@ export function AuthProvider({ children }) {
   const [socket, setSocket] = useState(null);
 
   const connectSocket = (userId) => {
-    const s = io(import.meta.env.VITE_API_URL.replace('/api', ''));
+    const s = io(import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_API_URL.replace('/api', ''), {
+      transports: ['websocket', 'polling'],
+    });
     s.emit('user:join', userId);
     setSocket(s);
     return s;

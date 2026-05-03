@@ -29,7 +29,7 @@ export default function AmbulanceDashboard() {
 
   useEffect(() => {
     load();
-    const socket = io(import.meta.env.VITE_API_URL.replace('/api', ''));
+    const socket = io(import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_API_URL.replace('/api', ''), { transports: ['websocket', 'polling'] });
     socketRef.current = socket;
     socket.emit('driver:join', user._id);
     socket.on('emergency:assigned', () => { load(); toast('🚨 New emergency assigned!'); });

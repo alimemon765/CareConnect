@@ -14,7 +14,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/admin/dashboard`).then((r) => setStats(r.data));
 
-    const socket = io(import.meta.env.VITE_API_URL.replace('/api', ''));
+    const socket = io(import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_API_URL.replace('/api', ''), { transports: ['websocket', 'polling'] });
     socketRef.current = socket;
     socket.emit('admin:join');
     socket.on('admin:emergency_alert', (payload) => {

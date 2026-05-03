@@ -95,7 +95,7 @@ export default function PatientSOS() {
 
   const connectSocket = (requestId) => {
     if (socketRef.current) socketRef.current.disconnect();
-    const socket = io(import.meta.env.VITE_API_URL.replace('/api', ''));
+    const socket = io(import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_API_URL.replace('/api', ''), { transports: ['websocket', 'polling'] });
     socketRef.current = socket;
     socket.emit('patient:join', requestId);
     socket.on('driver:location', ({ lat, lng }) => {

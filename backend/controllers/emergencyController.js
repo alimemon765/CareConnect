@@ -134,6 +134,23 @@ const getStatus = async (req, res) => {
   }
 };
 
+const cancelRequest = async (req, res) => {
+  try {
+    const request = await EmergencyRequest.findById(req.params.requestId);
+    if (!request) return res.status(404).json({ message: 'Not found' });
+    if (request.status !== 'Assigned') {
+      return res.status(400).json({ message: 'Cannot cancel — ambulance already en route' });
+    }
+    request.status = 'Cancelled';
+    await request.save();
+    const driver = await AmbulanceDriver.findById(request.assignedAmbulanceId);
+    if (driver) { driver.isAvailable = true; driver.isOnDuty = false; await driver.save(); }
+    res.json(request);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const acceptRequest = async (req, res) => {
   try {
     const request = await EmergencyRequest.findById(req.params.requestId);
@@ -165,4 +182,4 @@ const completeRequest = async (req, res) => {
   }
 };
 
-module.exports = { setIO, sos, getActiveRequest, getStatus, acceptRequest, completeRequest };
+module.exports = { setIO, sos, getActiveRequest, getStatus, cancelRequest, acceptRequest, completeRequest };
