@@ -94,7 +94,7 @@ async function seed() {
       bloodGroup: 'O+',
       allergies: ['Penicillin'],
       chronicConditions: ['Hypertension'],
-      emergencyContact: { name: 'Sita Kumar', phone: '9800000010' }
+      emergencyContact: { name: 'Sita Kumar', phone: '9800000010', email: 'ali.memon1507@gmail.com' }
     },
     {
       userId: patUsers[1]._id,
@@ -103,7 +103,7 @@ async function seed() {
       bloodGroup: 'B+',
       allergies: [],
       chronicConditions: [],
-      emergencyContact: { name: 'Rohit Patel', phone: '9800000011' }
+      emergencyContact: { name: 'Rohit Patel', phone: '9800000011', email: 'ali.memon1507@gmail.com' }
     },
     {
       userId: patUsers[2]._id,
@@ -112,7 +112,7 @@ async function seed() {
       bloodGroup: 'A-',
       allergies: ['Sulfa'],
       chronicConditions: ['Diabetes Type 2'],
-      emergencyContact: { name: 'Meena Singh', phone: '9800000012' }
+      emergencyContact: { name: 'Meena Singh', phone: '9800000012', email: 'ali.memon1507@gmail.com' }
     }
   ]);
 
